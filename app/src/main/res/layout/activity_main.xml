@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    tools:context="com.semesterproject.firebase.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -40,7 +40,8 @@
             android:hint="@string/hint_email"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:autofillHints="" />
 
         <EditText
             android:id="@+id/new_email"
@@ -56,11 +57,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusableInTouchMode="true"
+            android:hint="@string/prompt_password"
             android:imeActionId="6"
             android:imeOptions="actionUnspecified"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:autofillHints="" />
 
         <EditText
             android:id="@+id/newPassword"
@@ -72,7 +75,8 @@
             android:imeOptions="actionUnspecified"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:importantForAutofill="no" />
 
         <Button
             android:id="@+id/changeEmail"

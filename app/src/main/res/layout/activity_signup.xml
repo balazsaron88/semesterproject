@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:focusableInTouchMode="true"
                 android:hint="@string/hint_password"
-                android:imeActionId="@+id/login"
+                android:imeActionId="6"
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"
@@ -91,6 +91,12 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/auth_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone Number Auth" />
     </LinearLayout>
 
     <ProgressBar
