@@ -1,5 +1,7 @@
 package com.semesterproject.firebase;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -7,9 +9,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,14 +27,37 @@ import java.util.List;
 public class ListingActivity extends AppCompatActivity {
 
     TextView ename,eemail,eaddress;
-    Button save,view;
+    Button save,view, btnProfile;
     FirebaseDatabase database;
     DatabaseReference myRef;
     List<Listdata> list;
     RecyclerView recyclerview;
 
+    private FirebaseAuth.AuthStateListener authListener;
+    private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //get firebase auth instance
+        auth = FirebaseAuth.getInstance();
+
+        //get current user
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        authListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user == null) {
+                    // user auth state is changed - user is null
+                    // launch login activity
+                    startActivity(new Intent(ListingActivity.this, LoginActivity.class));
+                    finish();
+                }
+            }
+        };
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listing);
         ename = (TextView) findViewById(R.id.etname);
@@ -37,6 +65,7 @@ public class ListingActivity extends AppCompatActivity {
         eaddress = (TextView) findViewById(R.id.eaddress);
         save = (Button) findViewById(R.id.save);
         view = (Button) findViewById(R.id.view);
+        btnProfile = (Button) findViewById(R.id.profile);
         recyclerview = (RecyclerView) findViewById(R.id.rview);
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("message");
@@ -63,7 +92,12 @@ public class ListingActivity extends AppCompatActivity {
             }
         });
 
-
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ListingActivity.this, MainActivity.class));
+            }
+        });
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +142,11 @@ public class ListingActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(authListener);
     }
 }

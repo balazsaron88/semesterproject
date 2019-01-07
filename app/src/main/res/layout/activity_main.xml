@@ -165,6 +165,15 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/listing"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Back to listing"
+            android:textStyle="bold" />
+
+        <Button
             android:id="@+id/sign_out"
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
