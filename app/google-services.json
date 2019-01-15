@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "833999021064-d9mtpf868ppn320dp8n773khabgkjiig.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.semesterproject.firebase",
+            "certificate_hash": "d9ac08d4a853dcf92180ad3455dd089490d66018"
+          }
+        },
+        {
           "client_id": "833999021064-pt247kmj5fmt3t4p7snbc7n9qn2qnt2e.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "833999021064-pt247kmj5fmt3t4p7snbc7n9qn2qnt2e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
